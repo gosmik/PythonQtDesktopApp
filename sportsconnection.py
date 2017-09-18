@@ -29,7 +29,7 @@ def createDB():
 
 def addNewRow(id,name,surname):
     query = QtSql.QSqlQuery()
-    queryString ="insert into sportsmen values("+str(id)+", 'Yusuf1', 'Unlu')"
+    queryString ="insert into sportsmen values("+str(id)+", '"+name+"', '"+surname+"')"
     print(queryString)
     query.exec_(queryString)
 

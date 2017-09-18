@@ -1,6 +1,6 @@
 import sys
 from PyQt4 import QtCore, QtGui, QtSql
-from Yusuf import sportsconnection
+import sportsconnection
 
 
 def initializeModel(model):
@@ -18,13 +18,16 @@ def createView(title, model):
     return view
 
 
-def addrow():
+
+def addrow(self):
     print(model.rowCount())
-    # ret = model.insertRows(model.rowCount(), 1)
+    ret = model.insertRows(model.rowCount(), 1)
     # sportsconnection.addNewRow(name='Yusuf',surname='Unlu')
     sportsconnection.addNewRow(id=123,name='denemename',surname='denemsurname')
     # model.submitAll();
     # print(ret)
+    # model.itemData(self,)
+    model.record(2)
 
 
 def findrow(i):
