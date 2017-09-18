@@ -4,12 +4,12 @@ import sportsconnection
 
 
 def initializeModel(model):
-    model.setTable('sportsmen')
+    model.setTable('GroupNames')
     model.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
     model.select()
     model.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
     model.setHeaderData(1, QtCore.Qt.Horizontal, "First name")
-    model.setHeaderData(2, QtCore.Qt.Horizontal, "Last name")
+    # model.setHeaderData(2, QtCore.Qt.Horizontal, "Last name")
 
 def createView(title, model):
     view = QtGui.QTableView()
