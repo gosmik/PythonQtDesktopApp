@@ -24,27 +24,20 @@ class MainWindow(QMainWindow):
         view.triggered[QAction].connect(self.viewMenuActions)
         self.setWindowTitle("Transport Invoices")
 
-    def save_clicked(self,name,adress):
-        print(name+adress)
-        print("Save Customer clicked")
-
-    def cancel_clicked(self):
-        print("Cancel Customer clicked")
-
     def fileMenuActions(self, q):
         print("File menu triggered")
         if q.text() == "New Customer":
             MainWindow.count = MainWindow.count + 1
-            sub = QMdiSubWindow()
-            sub.setWidget(QTextEdit())
-            sub.setWindowTitle("New Customer " + str(MainWindow.count))
-            self.mdi.addSubWindow(sub)
-            sub.show()
+            self.sub = QMdiSubWindow()
+            self.sub.setWidget(QTextEdit())
+            self.sub.setWindowTitle("New Customer " + str(MainWindow.count))
+            self.mdi.addSubWindow(self.sub)
+            self.sub.show()
 
         if q.text() == "New Route":
             MainWindow.count = MainWindow.count + 1
-            sub = QMdiSubWindow()
 
+            self.sub = QMdiSubWindow()
             widget = QWidget()
             nameLabel = QLabel("Name")
             nameInput = QLineEdit()
@@ -70,12 +63,12 @@ class MainWindow(QMainWindow):
 
             widget.setLayout(fbox)
 
-            sub.setWidget(widget)
+            self.sub.setWidget(widget)
             # sub.setWidget(QTextEdit())
 
-            sub.setWindowTitle("New Route " + str(MainWindow.count))
-            self.mdi.addSubWindow(sub)
-            sub.show()
+            self.sub.setWindowTitle("New Route " + str(MainWindow.count))
+            self.mdi.addSubWindow(self.sub)
+            self.sub.show()
 
     def viewMenuActions(self, q):
         print("View menu triggered")
@@ -84,6 +77,15 @@ class MainWindow(QMainWindow):
 
         if q.text() == "Tiled":
             self.mdi.tileSubWindows()
+
+
+    def save_clicked(self,name,adress):
+        print(name+adress)
+        print("Save Customer clicked")
+
+    def cancel_clicked(self):
+        print("Cancel Customer clicked")
+        self.sub.hide()
 
 def main():
     app = QApplication(sys.argv)
