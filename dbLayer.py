@@ -3,7 +3,7 @@ from PyQt4 import QtSql, QtGui
 
 def createDB():
     db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
-    db.setDatabaseName('sports.db')
+    db.setDatabaseName('transport.db')
 
     if not db.open():
         QtGui.QMessageBox.critical(None, QtGui.qApp.tr("Cannot open database"),
@@ -17,13 +17,13 @@ def createDB():
 
     query = QtSql.QSqlQuery()
 
-    query.exec_("CREATE TABLE GroupNames (  ID    integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,  Name  varchar(50)) ")
+    query.exec_("CREATE TABLE customers (customer_id integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,  name  varchar(50)) ")
+    query.exec_("CREATE TABLE locations (location_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , customer_id INT, name  varchar(50), "
+                "FOREIGN KEY (customer_id) REFERENCES customers(customer_id)) ")
 
-    query.exec_("insert into groupnames (name) values ("'testName'")")
-    # query.exec_("insert into sportsmen values(101,'Christiano', 'Ronaldo')")
-    # query.exec_("insert into sportsmen values(102,'Ussain', 'Bolt')")
-    # query.exec_("insert into sportsmen values(103, 'Sachin', 'Tendulkar')")
-    # query.exec_("insert into sportsmen values(104,'Saina', 'Nehwal')")
+    query.exec_("insert into customers values(null,'test customer')")
+    query.exec_("insert into locations values(null,1,'istanbul')")
+
     return True
 
 def addNewRow(id,name,surname):
