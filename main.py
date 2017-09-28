@@ -2,6 +2,7 @@ from PyQt4 import QtGui  # Import the PyQt4 module we'll need
 import sys  # We need sys so that we can pass argv to QApplication
 
 import arayuz  # This file holds our MainWindow and all design related things
+import dbLayer
 
 # it also keeps events etc that we defined in Qt Designer
 import os  # For listing directory methods
@@ -18,6 +19,7 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         # It sets up layout and widgets that are defined
         self.btnCustomerList.clicked.connect(self.browse_folder)  # When the button is pressed
                                                             # Execute browse_folder function
+        self.btnSave.clicked.connect(self.saveNewCustomer)
 
     def browse_folder(self):
         self.customerListWidget.clear() # In case there are any existing elements in the list
@@ -30,6 +32,9 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
             for file_name in os.listdir(directory): # for all files, if any, in the directory
                 self.customerListWidget.addItem(file_name)  # add file to the listWidget
 
+
+    def saveNewCustomer(self):
+        dbLayer.SQLConnection.addNewCustomer(dbLayer.SQLConnection(),self.customerNameLineEdit.text())
 
 def main():
     app = QtGui.QApplication(sys.argv)  # A new instance of QApplication
