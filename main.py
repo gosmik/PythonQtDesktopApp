@@ -1,5 +1,10 @@
 from PyQt4 import QtGui  # Import the PyQt4 module we'll need
 import sys  # We need sys so that we can pass argv to QApplication
+import sys
+from PyQt4.QtCore import Qt, QVariant
+from PyQt4.QtGui import *
+from PyQt4.QtSql import QSqlQuery
+from PyQt4 import QtCore, QtGui, QtSql
 
 import arayuz  # This file holds our MainWindow and all design related things
 import dbLayer
@@ -17,24 +22,43 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)  # This is defined in design.py file automatically
         # It sets up layout and widgets that are defined
-        self.btnCustomerList.clicked.connect(self.browse_folder)  # When the button is pressed
-                                                            # Execute browse_folder function
+        self.query = QSqlQuery()
+
+        self.btnCustomerList.clicked.connect(self.fillCustomerQombo)
+
         self.btnSave.clicked.connect(self.saveNewCustomer)
+        db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
+        db.setDatabaseName('transport.db')
+        model = QtSql.QSqlTableModel()
+        self.initializeModel(model)
 
-    def browse_folder(self):
-        self.customerListWidget.clear() # In case there are any existing elements in the list
-        directory = QtGui.QFileDialog.getExistingDirectory(self,
-                                                           "Pick a folder")
-        # execute getExistingDirectory dialog and set the directory variable to be equal
-        # to the user selected directory
+        view1 = self.createView("Table Model (View 1)", model)
 
-        if directory: # if user didn't pick a directory don't continue
-            for file_name in os.listdir(directory): # for all files, if any, in the directory
-                self.customerListWidget.addItem(file_name)  # add file to the listWidget
-
+        self.formLayout_2.addWidget(view1)
 
     def saveNewCustomer(self):
         dbLayer.SQLConnection.addNewCustomer(dbLayer.SQLConnection(),self.customerNameLineEdit.text())
+
+    def fillCustomerQombo(self):
+        self.query.exec("select * from customers");
+        while (self.query.next()):
+            id = self.query.value(0).toString()
+            self.customerComboBox.addItem(id)
+
+
+    def createView(self,title, model):
+        view = QtGui.QTableView()
+        view.setModel(model)
+        view.setWindowTitle(title)
+        return view
+
+    def initializeModel(self,model):
+        model.setTable('customers')
+        model.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
+        model.select()
+        model.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
+        model.setHeaderData(1, QtCore.Qt.Horizontal, "First name")
+        model.setHeaderData(2, QtCore.Qt.Horizontal, "Last name")
 
 def main():
     app = QtGui.QApplication(sys.argv)  # A new instance of QApplication

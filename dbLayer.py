@@ -16,30 +16,38 @@ class SQLConnection:
 
             return
 
-        global query
-        query = QtSql.QSqlQuery()
+        self.query = QtSql.QSqlQuery()
 
-        query.exec_("CREATE TABLE customers (customer_id integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,  name  varchar(50)) ")
-        query.exec_("CREATE TABLE locations (location_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , customer_id INT, name  varchar(50), "
+        self.query.exec_("CREATE TABLE customers (customer_id integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,  name  varchar(50)) ")
+        self.query.exec_("CREATE TABLE locations (location_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , customer_id INT, name  varchar(50), "
                     "FOREIGN KEY (customer_id) REFERENCES customers(customer_id)) ")
 
         # query.exec_("insert into customers ('name') values('test customer')")
         self.addNewCustomer('test musteri')
-        query.exec_("insert into locations ('customer_id','name') values(1,'istanbul')")
+        self.query.exec_("insert into locations ('customer_id','name') values(1,'istanbul')")
 
         return
 
-    def addNewLocationOfCustomer(id,name):
-        query.prepare("INSERT INTO locations (customer_id, name) "
+    def addNewLocationOfCustomer(self,id,name):
+        self.query.prepare("INSERT INTO locations (customer_id, name) "
                       "VALUES (:customer_id, :name)");
-        query.bindValue(":customer_id", id);
-        query.bindValue(":name", name);
-        query.exec();
+        self.query.bindValue(":customer_id", id);
+        self.query.bindValue(":name", name);
+        self.query.exec();
 
     def addNewCustomer(self,name):
         queryString ="insert into customers ('name') values('"+str(name)+"')"
         print(queryString)
-        query.exec_(queryString)
+        self.query.exec_(queryString)
+
+    def getCutomerList(self):
+        queryString ="select * from customers"
+        self.query.exec_(queryString)
+        while (self.query.next()):
+            idString = self.query.value(0)
+            print(print)
+        print(queryString+"size "+str(self.query.size()))
+
 
 if __name__ == '__main__':
     import sys
