@@ -24,32 +24,33 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         # It sets up layout and widgets that are defined
         self.query = QSqlQuery()
 
-        self.btnCustomerList.clicked.connect(self.fillCustomerQombo)
+        self.btnRefreshLocations.clicked.connect(self.initComboBox)
 
         self.btnSave.clicked.connect(self.saveNewCustomer)
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName('transport.db')
-        model = QtSql.QSqlTableModel()
-        self.initializeModel(model)
 
-        self.customerComboBox.setModel(model)
+        self.initComboBox()
 
 
     def saveNewCustomer(self):
         dbLayer.SQLConnection.addNewCustomer(dbLayer.SQLConnection(),self.customerNameLineEdit.text())
+    def saveNewLocation(self):
+        dbLayer.SQLConnection.addNewCustomer(dbLayer.SQLConnection(),self.newLocationLineEdit.text(),self.customerComboBox.currentText())
+
+    def initComboBox(self):
+        self.locationsModel = QtSql.QSqlTableModel()
+        self.locationsModel.setTable('locations')
+        self.locationsModel.select()
+
+        self.customerComboBox.setModel(self.locationsModel)
+        self.customerComboBox.setModelColumn(2)
 
     def fillCustomerQombo(self):
         self.query.exec("select * from customers");
         while (self.query.next()):
             id = self.query.value(0).toString()
             self.customerComboBox.addItem(id)
-
-    def initializeModel(self,model):
-        model.setTable('customers')
-        model.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
-        model.select()
-        model.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
-        model.setHeaderData(1, QtCore.Qt.Horizontal, "Name")
 
 def main():
     app = QtGui.QApplication(sys.argv)  # A new instance of QApplication

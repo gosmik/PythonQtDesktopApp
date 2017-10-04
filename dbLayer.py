@@ -41,6 +41,10 @@ class SQLConnection:
         queryString ="insert into customers ('name') values('"+str(name)+"')"
         print(queryString)
         self.query.exec_(queryString)
+    def addNewLocation(self,cus,loc):
+        queryString ="insert into locations ('customer_id','name') values(1,'istanbul')"
+        print(queryString)
+        self.query.exec_(queryString)
 
     def getCutomerList(self):
         queryString ="select * from customers"
