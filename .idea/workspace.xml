@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acb63c6a-bc6e-400f-83b5-cf11419550ce" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sportsconnection.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/Menu.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/Messagebox.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/MultipleDocument.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/QDialog.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/QFormLayout.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/QMdiArea.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/SignalParam.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/document3.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/pyqt_signals_and_slots.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/qboxlayout.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/qgridlayout.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Deneme/window.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Deneme/Widgets.py" afterPath="$PROJECT_DIR$/Deneme/arayuz.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arayuz.ui" afterPath="$PROJECT_DIR$/arayuz.ui" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/transport.db" afterPath="$PROJECT_DIR$/transport.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Deneme/deneme.py" afterPath="$PROJECT_DIR$/Deneme/deneme.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arayuz.py" afterPath="$PROJECT_DIR$/arayuz.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dbLayer.py" afterPath="$PROJECT_DIR$/dbLayer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
@@ -46,8 +31,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="157">
+              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
               <folding>
                 <element signature="e#0#61#0" expanded="true" />
               </folding>
@@ -58,8 +43,8 @@
       <file leaf-file-name="dbLayer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dbLayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="43" column="45" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="45" />
+            <state relative-caret-position="140">
+              <caret line="39" column="32" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="32" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -96,13 +81,13 @@
         <option value="$PROJECT_DIR$/design.txt" />
         <option value="$PROJECT_DIR$/design.py" />
         <option value="$PROJECT_DIR$/arayuz.py" />
-        <option value="$PROJECT_DIR$/dbLayer.py" />
         <option value="$PROJECT_DIR$/Deneme/voidynullness.py" />
         <option value="$PROJECT_DIR$/Deneme/pyqt-table-master/btable.py" />
         <option value="$PROJECT_DIR$/Deneme/pyqt-table-master/table.py" />
         <option value="$PROJECT_DIR$/Deneme/sportsconnection.py" />
         <option value="$PROJECT_DIR$/Deneme/arayuz.py" />
         <option value="$PROJECT_DIR$/Deneme/deneme.py" />
+        <option value="$PROJECT_DIR$/dbLayer.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -138,7 +123,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -174,6 +158,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -450,10 +435,9 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21292776" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22072679" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3580081" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -463,6 +447,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -496,6 +481,26 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbLayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="43" column="45" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -615,20 +620,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/qboxlayout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/SignalParam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Deneme/qboxlayout.py" />
+    <entry file="file://$PROJECT_DIR$/Deneme/SignalParam.py" />
     <entry file="file://$PROJECT_DIR$/database_handling_ui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -661,41 +654,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deneme/Menu.py" />
     <entry file="file://$PROJECT_DIR$/Deneme/Widgets.py" />
-    <entry file="file://$PROJECT_DIR$/Deneme/MultipleDocument.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4592">
-          <caret line="115" column="16" selection-start-line="115" selection-start-column="6" selection-end-line="115" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/QMdiArea.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/QFormLayout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/SignalParam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/qboxlayout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Deneme/MultipleDocument.py" />
+    <entry file="file://$PROJECT_DIR$/Deneme/QMdiArea.py" />
+    <entry file="file://$PROJECT_DIR$/Deneme/QFormLayout.py" />
+    <entry file="file://$PROJECT_DIR$/Deneme/SignalParam.py" />
+    <entry file="file://$PROJECT_DIR$/Deneme/qboxlayout.py" />
     <entry file="file://$PROJECT_DIR$/designs.ui" />
     <entry file="file://$PROJECT_DIR$/design.py" />
     <entry file="file://$PROJECT_DIR$/database_handling_ui.py">
@@ -713,53 +676,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/voidynullness.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/pyqt-table-master/btable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/pyqt-table-master/table_ui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/pyqt-table-master/table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Deneme/voidynullness.py" />
+    <entry file="file://$PROJECT_DIR$/Deneme/pyqt-table-master/btable.py" />
+    <entry file="file://$PROJECT_DIR$/Deneme/pyqt-table-master/table_ui.py" />
+    <entry file="file://$PROJECT_DIR$/Deneme/pyqt-table-master/table.py" />
     <entry file="file://$PROJECT_DIR$/sportsconnection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deneme/deneme.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -775,16 +699,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
           <caret line="50" column="10" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deneme/deneme.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dbLayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="43" column="45" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="45" />
+        <state relative-caret-position="140">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="32" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
@@ -793,8 +724,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="157">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
           <folding>
             <element signature="e#0#61#0" expanded="true" />
           </folding>

@@ -23,8 +23,10 @@ class SQLConnection:
                     "FOREIGN KEY (customer_id) REFERENCES customers(customer_id)) ")
 
         # query.exec_("insert into customers ('name') values('test customer')")
-        self.addNewCustomer('test musteri')
-        self.query.exec_("insert into locations ('customer_id','name') values(1,'istanbul')")
+        if self.countCustomer() == 0:
+            self.addNewCustomer('test musteri')
+        if self.countLocations() == 0:
+            self.query.exec_("insert into locations ('customer_id','name') values(1,'istanbul')")
 
         return
 
@@ -48,6 +50,13 @@ class SQLConnection:
             print(print)
         print(queryString+"size "+str(self.query.size()))
 
+    def countCustomer(self):
+        queryString ="select count* from customers"
+        self.query.exec_(queryString)
+
+    def countLocations(self):
+        queryString = "select count* from locations"
+        self.query.exec_(queryString)
 
 if __name__ == '__main__':
     import sys

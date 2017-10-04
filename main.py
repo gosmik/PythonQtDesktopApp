@@ -32,9 +32,8 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         model = QtSql.QSqlTableModel()
         self.initializeModel(model)
 
-        view1 = self.createView("Table Model (View 1)", model)
+        self.customerComboBox.setModel(model)
 
-        self.formLayout_2.addWidget(view1)
 
     def saveNewCustomer(self):
         dbLayer.SQLConnection.addNewCustomer(dbLayer.SQLConnection(),self.customerNameLineEdit.text())
@@ -45,20 +44,12 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
             id = self.query.value(0).toString()
             self.customerComboBox.addItem(id)
 
-
-    def createView(self,title, model):
-        view = QtGui.QTableView()
-        view.setModel(model)
-        view.setWindowTitle(title)
-        return view
-
     def initializeModel(self,model):
         model.setTable('customers')
         model.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
         model.select()
         model.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
-        model.setHeaderData(1, QtCore.Qt.Horizontal, "First name")
-        model.setHeaderData(2, QtCore.Qt.Horizontal, "Last name")
+        model.setHeaderData(1, QtCore.Qt.Horizontal, "Name")
 
 def main():
     app = QtGui.QApplication(sys.argv)  # A new instance of QApplication

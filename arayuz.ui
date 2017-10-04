@@ -63,9 +63,9 @@
    <widget class="QWidget" name="formLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>329</x>
+      <x>559</x>
       <y>139</y>
-      <width>471</width>
+      <width>241</width>
       <height>441</height>
      </rect>
     </property>

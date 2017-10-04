@@ -52,7 +52,7 @@ class Ui_MainWindow(object):
         self.btnSave.setObjectName(_fromUtf8("btnSave"))
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.btnSave)
         self.formLayoutWidget_2 = QtGui.QWidget(self.centralwidget)
-        self.formLayoutWidget_2.setGeometry(QtCore.QRect(329, 139, 471, 441))
+        self.formLayoutWidget_2.setGeometry(QtCore.QRect(559, 139, 241, 441))
         self.formLayoutWidget_2.setObjectName(_fromUtf8("formLayoutWidget_2"))
         self.formLayout_2 = QtGui.QFormLayout(self.formLayoutWidget_2)
         self.formLayout_2.setObjectName(_fromUtf8("formLayout_2"))
