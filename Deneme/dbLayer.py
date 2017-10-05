@@ -30,19 +30,13 @@ class SQLConnection:
 
         return
 
-    def addNewLocationOfCustomer(self,id,name):
-        self.query.prepare("INSERT INTO locations (customer_id, name) "
-                      "VALUES (:customer_id, :name)");
-        self.query.bindValue(":customer_id", id);
-        self.query.bindValue(":name", name);
-        self.query.exec();
-
     def addNewCustomer(self,name):
         queryString ="insert into customers ('name') values('"+str(name)+"')"
         print(queryString)
         self.query.exec_(queryString)
+
     def addNewLocation(self,cus,loc):
-        queryString ="insert into locations ('customer_id','name') values(1,'istanbul')"
+        queryString ="insert into locations ('customer_id','name') values('"+str(cus)+"','"+str(loc)+"')"
         print(queryString)
         self.query.exec_(queryString)
 
@@ -51,8 +45,13 @@ class SQLConnection:
         self.query.exec_(queryString)
         while (self.query.next()):
             idString = self.query.value(0)
-            print(print)
-        print(queryString+"size "+str(self.query.size()))
+
+    def getLocationList(self):
+        self.query.exec("select * from locations");
+        while (self.query.next()):
+            name = self.query.value(0).toString();
+            self.cusLocWidget.addItem(name)
+        print("select * from locations size "+str(self.query.size()))
 
     def countCustomer(self):
         queryString ="select count* from customers"
