@@ -40,11 +40,15 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         self.query.exec_("CREATE TABLE customers (customer_name integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,  name  varchar(50)) ")
         self.query.exec_("CREATE TABLE locations (location_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , customer_name INT, name  varchar(50), "
                     "FOREIGN KEY (customer_name) REFERENCES customers(customer_name)) ")
+        self.query.exec_("CREATE TABLE items (item_id integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , item_name varchar(50), item_price  varchar(50))")
 
         ok = self.db.open()
         if (ok):
             self.initComboBox()
-            self.initCusLocWidget(self.customerComboBox.currentText())
+            self.initCusLocWidget()
+
+        self.menuShow_Tables.triggered.connect(self.initItemPriceCustomerTable)
+        self.newItemSaveBtn.clicked.connect(self.saveNewItem)
 
     def saveNewCustomer(self):
         self.query.clear()
@@ -59,8 +63,18 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         queryString ="insert into locations ('customer_name','name') values('"+str(self.customerComboBox.currentText())+"','"+str(self.newLocationLineEdit.text())+"')"
         print("saveNewLocation"+queryString)
         self.query.exec(queryString)
-        self.initCusLocWidget(self.customerComboBox.currentText())
+        print(self.query.lastError())
+        self.initCusLocWidget()
 
+    def saveNewItem(self):
+        self.query.clear()
+        queryString ="insert into items ('item_name','item_price')  values('"+self.itemNameLineEdit.text()+"','"+str(self.tonPriceLineEdit.text())+"')"
+        queryString = "insert into items values(20, 'Roger', 'Federer')"
+
+        self.query.exec(queryString)
+        print("saveNewItem: "+queryString)
+        print(self.query.lastError())
+        self.initItemPriceCustomerTable()
 
     def initComboBox(self):
         self.customersModel = QtSql.QSqlTableModel()
@@ -69,12 +83,21 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
 
         self.customerComboBox.setModel(self.customersModel)
         self.customerComboBox.setModelColumn(1)
+        self.connect(self.customerComboBox,QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.initCusLocWidget)
 
-    def initCusLocWidget(self,_customer_name):
+    def initItemPriceCustomerTable(self):
+        self.itemsModel = QtSql.QSqlTableModel()
+        self.itemsModel.setTable('items')
+        self.itemsModel.select()
+        self.itemsModel.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
+
+        self.tableView.setModel(self.itemsModel)
+
+    def initCusLocWidget(self):
         self.query.clear()
         self.cusLocWidget.clear()
-        queryString = "select customer_name,name from locations where customer_name='"+_customer_name+"'"
-        print("queryString: "+queryString)
+        queryString = "select customer_name,name from locations where customer_name='"+self.customerComboBox.currentText()+"'"
+        print("initCusLocWidget: "+queryString)
         isOk = self.query.exec(queryString)
         if isOk:
             while (self.query.next()):
