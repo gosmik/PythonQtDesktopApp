@@ -37,14 +37,14 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
             return
 
         self.query = QtSql.QSqlQuery()
-        self.query.exec_("CREATE TABLE customers (customer_id integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,  name  varchar(50)) ")
-        self.query.exec_("CREATE TABLE locations (location_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , customer_id INT, name  varchar(50), "
-                    "FOREIGN KEY (customer_id) REFERENCES customers(customer_id)) ")
+        self.query.exec_("CREATE TABLE customers (customer_name integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,  name  varchar(50)) ")
+        self.query.exec_("CREATE TABLE locations (location_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , customer_name INT, name  varchar(50), "
+                    "FOREIGN KEY (customer_name) REFERENCES customers(customer_name)) ")
 
         ok = self.db.open()
         if (ok):
             self.initComboBox()
-            self.initCusLocWidget()
+            self.initCusLocWidget(self.customerComboBox.currentText())
 
     def saveNewCustomer(self):
         self.query.clear()
@@ -56,9 +56,10 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
 
     def saveNewLocation(self):
         self.query.clear()
-        queryString ="insert into locations ('customer_id','name') values('"+str(self.customerComboBox.currentText())+"','"+str(self.newLocationLineEdit.text())+"')"
+        queryString ="insert into locations ('customer_name','name') values('"+str(self.customerComboBox.currentText())+"','"+str(self.newLocationLineEdit.text())+"')"
         print("saveNewLocation"+queryString)
         self.query.exec(queryString)
+        self.initCusLocWidget(self.customerComboBox.currentText())
 
 
     def initComboBox(self):
@@ -69,12 +70,15 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         self.customerComboBox.setModel(self.customersModel)
         self.customerComboBox.setModelColumn(1)
 
-    def initCusLocWidget(self):
+    def initCusLocWidget(self,_customer_name):
         self.query.clear()
-        isOk = self.query.exec("select * from locations")
+        self.cusLocWidget.clear()
+        queryString = "select customer_name,name from locations where customer_name='"+_customer_name+"'"
+        print("queryString: "+queryString)
+        isOk = self.query.exec(queryString)
         if isOk:
             while (self.query.next()):
-                name = self.query.value(0).toString();
+                name = self.query.value(1);
                 self.cusLocWidget.addItem(name)
 
 def main():
