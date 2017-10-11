@@ -40,12 +40,13 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         self.query.exec_("CREATE TABLE customers (customer_name integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,  name  varchar(50)) ")
         self.query.exec_("CREATE TABLE locations (location_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , customer_name INT, name  varchar(50), "
                     "FOREIGN KEY (customer_name) REFERENCES customers(customer_name)) ")
-        self.query.exec_("CREATE TABLE items (item_id integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , item_name varchar(50), item_price  varchar(50))")
+        self.query.exec_("CREATE TABLE items (item_id integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , item_name varchar(50), item_price  integer)")
 
         ok = self.db.open()
         if (ok):
             self.initComboBox()
             self.initCusLocWidget()
+            self.initItemPriceCustomerTable()
 
         self.menuShow_Tables.triggered.connect(self.initItemPriceCustomerTable)
         self.newItemSaveBtn.clicked.connect(self.saveNewItem)
@@ -68,12 +69,10 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
 
     def saveNewItem(self):
         self.query.clear()
-        queryString ="insert into items ('item_name','item_price')  values('"+self.itemNameLineEdit.text()+"','"+str(self.tonPriceLineEdit.text())+"')"
-        queryString = "insert into items values(20, 'Roger', 'Federer')"
-
+        queryString ="insert into items ('item_name','item_price')  values('"+self.itemNameLineEdit.text()+"','"+self.tonPriceLineEdit.text()+"')"
         self.query.exec(queryString)
         print("saveNewItem: "+queryString)
-        print(self.query.lastError())
+        print("query error: "+self.query.lastError().text())
         self.initItemPriceCustomerTable()
 
     def initComboBox(self):
@@ -90,7 +89,6 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         self.itemsModel.setTable('items')
         self.itemsModel.select()
         self.itemsModel.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
-
         self.tableView.setModel(self.itemsModel)
 
     def initCusLocWidget(self):
