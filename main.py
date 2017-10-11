@@ -19,7 +19,7 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         self.setupUi(self)  # This is defined in design.py file automatically
         # It sets up layout and widgets that are defined
 
-        self.btnRefreshLocations.clicked.connect(self.initComboBox)
+        self.btnRefreshLocations.clicked.connect(self.initCustomerComboBox)
         self.btnSaveLocation.clicked.connect(self.saveNewLocation)
 
         self.btnSave.clicked.connect(self.saveNewCustomer)
@@ -41,12 +41,18 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         self.query.exec_("CREATE TABLE locations (location_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , customer_name INT, name  varchar(50), "
                     "FOREIGN KEY (customer_name) REFERENCES customers(customer_name)) ")
         self.query.exec_("CREATE TABLE items (item_id integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , item_name varchar(50), item_price  integer)")
-
+        self.query.exec_(
+            "CREATE TABLE item_customer (item_customer_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , item_customer_discounted  integer)")
+        self.query.exec_(
+            "CREATE TABLE quotes (quote_id  integer PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , start_loc_id INT, end_loc_id INT,customer_name  varchar(50) "
+            "FOREIGN KEY (customer_name) REFERENCES customers(customer_name)) ")
         ok = self.db.open()
         if (ok):
-            self.initComboBox()
+            self.initCustomerComboBox()
             self.initCusLocWidget()
             self.initItemPriceCustomerTable()
+            self.initQuoteCustomerCombo()
+            self.initQuoteStartLoc()
 
         self.menuShow_Tables.triggered.connect(self.initItemPriceCustomerTable)
         self.newItemSaveBtn.clicked.connect(self.saveNewItem)
@@ -57,7 +63,7 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         print("saveNewCustomer"+queryString)
         self.query.exec(queryString)
         print(self.query.lastError())
-        self.initComboBox()
+        self.initCustomerComboBox()
 
     def saveNewLocation(self):
         self.query.clear()
@@ -75,7 +81,7 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         print("query error: "+self.query.lastError().text())
         self.initItemPriceCustomerTable()
 
-    def initComboBox(self):
+    def initCustomerComboBox(self):
         self.customersModel = QtSql.QSqlTableModel()
         self.customersModel.setTable('customers')
         self.customersModel.select()
@@ -91,6 +97,13 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         self.itemsModel.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
         self.tableView.setModel(self.itemsModel)
 
+    def initItemDiscountTable(self):
+        self.itemDiscountModel = QtSql.QSqlTableModel()
+        self.itemDiscountModel.setTable('item_customer')
+        self.itemDiscountModel.select()
+        self.itemDiscountModel.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
+        self.itemDiscountsTable.setModel(self.itemDiscountModel)
+
     def initCusLocWidget(self):
         self.query.clear()
         self.cusLocWidget.clear()
@@ -101,6 +114,28 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
             while (self.query.next()):
                 name = self.query.value(1);
                 self.cusLocWidget.addItem(name)
+
+    def initQuoteCustomerCombo(self):
+        self.customersModel = QtSql.QSqlTableModel()
+        self.customersModel.setTable('customers')
+        self.customersModel.select()
+
+        self.chooseQuoteCustomerCombo.setModel(self.customersModel)
+        self.chooseQuoteCustomerCombo.setModelColumn(1)
+        self.connect(self.chooseQuoteCustomerCombo,QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.initQuoteStartLoc)
+
+    def initQuoteStartLoc(self):
+        self.query.clear()
+        self.chooseStartLocationComboBox.clear()
+        queryString = "select customer_name,name from locations where customer_name='"+self.chooseQuoteCustomerCombo.currentText()+"'"
+        print("initQuoteStartLoc: "+queryString)
+        isOk = self.query.exec(queryString)
+        if isOk:
+            while (self.query.next()):
+                name = self.query.value(1);
+                self.chooseStartLocationComboBox.addItem(name)
+
+
 
 def main():
     app = QtGui.QApplication(sys.argv)  # A new instance of QApplication
