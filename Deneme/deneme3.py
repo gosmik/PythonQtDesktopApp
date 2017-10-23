@@ -1,13 +1,12 @@
 import sys
 import site
 from subprocess import Popen
-from PyQt4.QtCore import(Qt)
-from PyQt4.QtGui import(QMainWindow, QApplication, QWidget, QPushButton,
-QVBoxLayout, QTableView, QApplication)
-from PyQt4.QtSql import(QSqlDatabase, QSqlQuery, QSqlQueryModel, QSqlTableModel)
+from PyQt5.QtCore import(Qt)
+from PyQt5 import QtCore, QtGui, QtSql,QtWidgets
+from PyQt5.QtSql import(QSqlDatabase, QSqlQuery, QSqlQueryModel, QSqlTableModel)
 
 
-class Window(QMainWindow):
+class Window(QtWidgets):
 
     def __init__(self):
 

@@ -1,7 +1,5 @@
-from PyQt4 import QtGui  # Import the PyQt4 module we'll need
-import sys  # We need sys so that we can pass argv to QApplication
 import sys
-from PyQt4 import QtCore, QtGui, QtSql
+from PyQt5 import QtCore, QtGui, QtSql,QtWidgets
 
 import arayuz  # This file holds our MainWindow and all design related things
 
@@ -9,7 +7,7 @@ import arayuz  # This file holds our MainWindow and all design related things
 import os  # For listing directory methods
 
 
-class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
+class ExampleApp(QtWidgets.QMainWindow, arayuz.Ui_MainWindow):
     def __init__(self):
         # Explaining super is out of the scope of this article
         # So please google it if you're not familar with it
@@ -88,7 +86,8 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
 
         self.customerComboBox.setModel(self.customersModel)
         self.customerComboBox.setModelColumn(1)
-        self.connect(self.customerComboBox,QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.initCusLocWidget)
+        # self.connect(self.customerComboBox,QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.initCusLocWidget)
+        # self.customerComboBox.currentIndexChanged(self.initQuoteCustomerCombo())
 
     def initItemPriceCustomerTable(self):
         self.itemsModel = QtSql.QSqlTableModel()
@@ -119,10 +118,12 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
         self.customersModel = QtSql.QSqlTableModel()
         self.customersModel.setTable('customers')
         self.customersModel.select()
+        self.chooseQuoteCustomerCombo.activated.connect(self.initQuoteStartLoc)
 
         self.chooseQuoteCustomerCombo.setModel(self.customersModel)
         self.chooseQuoteCustomerCombo.setModelColumn(1)
-        self.connect(self.chooseQuoteCustomerCombo,QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.initQuoteStartLoc)
+        self.chooseQuoteCustomerCombo.activated.connect(self.initQuoteStartLoc)
+        # self.connect(self.chooseQuoteCustomerCombo,QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.initQuoteStartLoc)
 
     def initQuoteStartLoc(self):
         self.query.clear()
@@ -134,11 +135,23 @@ class ExampleApp(QtGui.QMainWindow, arayuz.Ui_MainWindow):
             while (self.query.next()):
                 name = self.query.value(1);
                 self.chooseStartLocationComboBox.addItem(name)
+        # self.connect(self.chooseStartLocationComboBox, QtCore.SIGNAL("currentIndexChanged(const QString&)"), self.initQuoteEndLoc)
+        self.chooseStartLocationComboBox.activated.connect(self.initQuoteEndLoc)
 
+    def initQuoteEndLoc(self):
+        self.query.clear()
+        self.chooseEndLocationComboBox.clear()
+        queryString = "select customer_name,name from locations where customer_name='"+self.chooseQuoteCustomerCombo.currentText()+"' and name <> '" + self.chooseStartLocationComboBox.currentText()+"'"
+        print("initQuoteEndLoc: "+queryString)
+        isOk = self.query.exec(queryString)
+        if isOk:
+            while (self.query.next()):
+                name = self.query.value(1);
+                self.chooseEndLocationComboBox.addItem(name)
 
 
 def main():
-    app = QtGui.QApplication(sys.argv)  # A new instance of QApplication
+    app = QtWidgets.QApplication(sys.argv)  # A new instance of QApplication
     form = ExampleApp()  # We set the form to be our ExampleApp (design)
     form.show()  # Show the form
     app.exec_()  # and execute the app

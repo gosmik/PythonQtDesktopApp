@@ -1,37 +1,48 @@
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+"""
+ZetCode PyQt5 tutorial
+
+In this example, we connect a signal
+of a QSlider to a slot of a QLCDNumber.
+
+Author: Jan Bodnar
+Website: zetcode.com
+Last edited: January 2017
+"""
+
 import sys
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (QWidget, QLCDNumber, QSlider,
+                             QVBoxLayout, QApplication)
 
 
-def main():
-    app = QApplication(sys.argv)
-    table = QTableWidget()
-    tableItem = QTableWidgetItem()
+class Example(QWidget):
+    def __init__(self):
+        super().__init__()
 
-    # initiate table
-    table.setWindowTitle("QTableWidget Example @pythonspot.com")
-    table.resize(400, 250)
-    table.setRowCount(4)
-    table.setColumnCount(2)
+        self.initUI()
 
-    # set label
-    table.setHorizontalHeaderLabels(str("H1;H2;").split(";"))
-    table.setVerticalHeaderLabels(str("V1;V2;V3;V4").split(";"))
+    def initUI(self):
+        lcd = QLCDNumber(self)
+        sld = QSlider(Qt.Horizontal, self)
+        combo = QWidget()
 
-    # set data
-    table.setItem(0, 0, QTableWidgetItem("Item (1,1)"))
-    table.setItem(0, 1, QTableWidgetItem("Item (1,2)"))
-    table.setItem(1, 0, QTableWidgetItem("Item (2,1)"))
-    table.setItem(1, 1, QTableWidgetItem("Item (2,2)"))
-    table.setItem(2, 0, QTableWidgetItem("Item (3,1)"))
-    table.setItem(2, 1, QTableWidgetItem("Item (3,2)"))
-    table.setItem(3, 0, QTableWidgetItem("Item (4,1)"))
-    table.setItem(3, 1, QTableWidgetItem("Item (4,2)"))
+        vbox = QVBoxLayout()
+        vbox.addWidget(lcd)
+        vbox.addWidget(sld)
 
-    # show table
-    table.show()
-    return app.exec_()
+        self.setLayout(vbox)
+        sld.valueChanged.connect(lcd.display)
+        sld.va
+
+        self.setGeometry(300, 300, 250, 150)
+        self.setWindowTitle('Signal and slot')
+        self.show()
 
 
 if __name__ == '__main__':
-    main()
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
