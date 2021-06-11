@@ -1,2 +1,3 @@
 # PythonQtDesktopApp
-This application will be a desktop application which has sqlite.
+This application will be a desktop application
+Sqlite is the database on local
